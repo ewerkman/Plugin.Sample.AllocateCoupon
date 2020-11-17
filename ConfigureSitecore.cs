@@ -11,6 +11,7 @@ namespace Plugin.Sample.AllocateCoupon
         public void ConfigureServices(IServiceCollection services)
         {
             var assembly = Assembly.GetExecutingAssembly();
+            services.RegisterAllCommands(assembly);
             services.RegisterAllPipelineBlocks(assembly);
 
             services.Sitecore().Pipelines(

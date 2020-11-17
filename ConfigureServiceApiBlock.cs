@@ -10,7 +10,7 @@ namespace Plugin.Sample.AllocateCoupon
         {
             var allocateCouponAction = arg.Function("AllocateCoupon");
             allocateCouponAction.Parameter<string>("promotionId");
-            allocateCouponAction.Parameter<string>("groupId");
+            allocateCouponAction.Parameter<string>("prefix");
             allocateCouponAction.Returns<string>();
             
             return arg;
