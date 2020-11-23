@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using Plugin.Sample.AllocateCoupon.Pipelines.Blocks;
 using Sitecore.Commerce.Core;
+using Sitecore.Commerce.Plugin.Carts;
 using Sitecore.Framework.Configuration;
 using Sitecore.Framework.Pipelines.Definitions.Extensions;
 
@@ -23,7 +25,11 @@ namespace Plugin.Sample.AllocateCoupon
                         .ConfigurePipeline<IRunningPluginsPipeline>(c =>
                         {
                             c.Add<Pipelines.Blocks.RegisteredPluginBlock>().After<RunningPluginsBlock>();
-                        }));
+                        })
+                        .ConfigurePipeline<IGetCartPipeline>(c => 
+                            c.Add<CheckPromotionAppliedBlock>().After<EnsureCartPersisted>()
+                )
+                    );
         }
     }
 }
